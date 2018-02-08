@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+    
+    <entry>
+      <title><![CDATA[Hello Hexo]]></title>
+      <url>/2018/02/07/hello-hexo/</url>
+      <content type="html"><![CDATA[<p>博客搭建好了，那就记录一下安装过程吧～～</p>
+<ol>
+<li><p>安装<a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">hexo</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog #会自动在当前目录创建一个blog文件夹，并初始化（文件夹的名字可以任意）</span><br><span class="line">cd blog</span><br><span class="line">npm install #安装相关的依赖包（执行init的时候默认会执行）</span><br><span class="line">hexo server #启动本地server，（启动后直接访问http://localhost:4000）</span><br></pre></td></tr></table></figure>
+<p>执行完以上操作后，一个本地的博客网站就搭建好了，那怎么让别人能访问到我的博客呢？</p>
+</li>
+<li><p>关联github page<br>github page 分为两种类型： User or organization site 和 Project site。<br>我选择的是User site，具体区别可以看<a href="https://pages.github.com/" target="_blank" rel="noopener">Github Pages</a></p>
+<ul>
+<li>新建一个repository,如下图（项目名字格式为：[你的用户名].github.io）<br><img src="/images/githubpage.png" alt=""></li>
+<li><p>进入到步骤2的blog目录,修改<code>_config.yml</code>配置文件</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line"># URL</span><br><span class="line">## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;</span><br><span class="line">url: https://[你的用户名].github.io #关联成功后的访问地址</span><br><span class="line">root: /</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo:</span><br><span class="line">    github: https://github.com/sweetolive/sweetolive.github.io.git #repository url（https or ssh）</span><br><span class="line">    branch: master #把生成的blog部署到master分支</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对该目录进行git初始化，然后，创建一个没有父节点的分支<code>blog</code>（博客的工作分支）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git checkout --orphan blog</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装 hexo-deployer-git（hexo3.0后需要这个库的支持）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把本地blog分支推送到远程github</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/sweetolive/sweetolive.github.io.git #repository url（https or ssh）</span><br><span class="line">git push -u origin blog</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生成网站，把生成的网站内容部署到master分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean #清除缓存文件 (db.json) 和已生成的静态文件 (public)</span><br><span class="line">hexo generate #生成静态文件</span><br><span class="line">hexo deploy #部署网站</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>大功告成，访问<a href="https://[你的用户名].github.io～～" target="_blank" rel="noopener">https://[你的用户名].github.io～～</a></p>
+</li>
+</ul>
+</li>
+<li>Reference<ul>
+<li><a href="http://www.jianshu.com/p/05289a4bc8b2" target="_blank" rel="noopener">如何搭建一个独立博客</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html" target="_blank" rel="noopener">搭建一个免费的，无限流量的Blog—-github Pages</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2016/07/yaml.html" target="_blank" rel="noopener">YAML 语言教程</a></li>
+<li><a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">hexo官网</a></li>
+<li><a href="https://hexo.io/zh-cn/docs/deployment.html" target="_blank" rel="noopener">hexo 部署</a></li>
+<li><a href="https://github.com/hexojs/hexo/wiki/Breaking-Changes-in-Hexo-3.0#slimmer-core-module" target="_blank" rel="noopener">hexo wiki</a></li>
+</ul>
+</li>
+</ol>
+]]></content>
+      
+        
+    </entry>
+    
+  
+  
+</search>
