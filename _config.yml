@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://sweetolive.github.io
+url: https://whiskyoo.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -63,12 +63,17 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: landscape
+
+# Search
+search:
+  field: post
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo:
-    github: git@github-sweetolive:sweetolive/sweetolive.github.io.git
-    branch: master
+  repo: git@github.com:whiskyoo/whiskyoo.github.io.git
+  branch: master
+  name: whiskyoo
+  email: 1483270926@qq.com
